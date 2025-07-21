@@ -1,5 +1,5 @@
 [project]
-name="{{cookiecutter.project_slug}}"
+name="{{cookiecutter.package_name}}"
 dynamic = ["version"]
 authors = [
     {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-src = "src.{{cookiecutter.project_slug}}.__main__:main"
+src = "src.{{cookiecutter.project_name}}.__main__:main"
 
 [project.optional-dependencies]
 dev = [
@@ -38,11 +38,11 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ['src']
-include = ["{{cookiecutter.project_slug}}", "{{cookiecutter.project_slug}}.*"]
+include = ["{{cookiecutter.package_name}}", "{{cookiecutter.package_name}}.*"]
 exclude = ["tests", "tests.*"]
 
 [tool.setuptools]
-py-modules = ["{{cookiecutter.project_slug}}"]
+py-modules = ["{{cookiecutter.package_name}"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

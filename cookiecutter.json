@@ -8,5 +8,5 @@
     "max_python_version": "3.12",
     "testing_framework":  "pytest",
     "python_version": "3.10",
-    "python_package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}"
+    "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}"
 }
