@@ -38,7 +38,7 @@
         "type": "string",
         "default": "3.10",
         "description": "The version of Python to use for the project."
-    }
+    },
     "python_package_name": {
         "type": "string",
         "default": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
