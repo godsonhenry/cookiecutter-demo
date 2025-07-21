@@ -15,9 +15,9 @@ def validate_project_name(project_name):
 
 def validate_python_version():
     """Validate the Python version to ensure it is supported."""
-    python_version = "{cookiecutter.python_version}"
-    min_version = "{cookiecutter.min_python_version}"
-    max_version = "{cookiecutter.max_python_version}"
+    python_version = "{{cookiecutter.python_version}}"
+    min_version = "{{cookiecutter.min_python_version}}"
+    max_version = "{{cookiecutter.max_python_version}}"
 
     if python_version < min_version:
         print(f"Error: This project requires Python {min_version} or higher.")
@@ -29,7 +29,7 @@ def validate_python_version():
 
 if __name__ == "__main__":
     project_name = "{{cookiecutter.project_name}}"
-    
+
     validate_project_name(project_name)
     validate_python_version()
     
