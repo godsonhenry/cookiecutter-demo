@@ -8,6 +8,7 @@ import sys
 
 def validate_project_name(project_name):
     """Validate the project name to ensure it follows Python package naming conventions."""
+    print(project_name)
     if not re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', project_name):
         print(f"Error: '{project_name}' is not a valid Python package name.")
         sys.exit(1)
@@ -27,7 +28,7 @@ def validate_python_version():
 
 
 if __name__ == "__main__":
-    project_name = "{cookiecutter.project_name}"
+    project_name = f"{cookiecutter.project_name}"
     
     validate_project_name(project_name)
     validate_python_version()
