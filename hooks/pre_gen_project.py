@@ -28,7 +28,7 @@ def validate_python_version():
 
 
 if __name__ == "__main__":
-    project_name = f"{cookiecutter.project_name}"
+    project_name = "{{cookiecutter.project_name}}"
     
     validate_project_name(project_name)
     validate_python_version()
