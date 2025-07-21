@@ -1,0 +1,52 @@
+[project]
+name="{{cookiecutter.project_slug}}"
+dynamic = ["version"]
+authors = [
+    {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
+]
+readme = "README.md
+dependencies = [
+    "pandas",
+    "numpy"
+]
+
+[project.scripts]
+src = "src.{{cookiecutter.project_slug}}.__main__:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[tool.uv]
+no-binary = false
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ['src']
+include = ["{{cookiecutter.project_slug}}", "{{cookiecutter.project_slug}}.*"]
+exclude = ["tests", "tests.*"]
+
+[tool.setuptools]
+py-modules = ["{{cookiecutter.project_slug}}"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.format]
+docstring-code-format=true
+indent-style = "tab"
