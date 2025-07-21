@@ -1,47 +1,11 @@
 {
-    "project_name": {
-        "type": "string",
-        "default": "project_name",
-        "description": "The name of the Python project."
-    },
-    "author_name": {
-        "type": "string",
-        "default": "Your Name",
-        "description": "The name of the project author."
-    },
-    "author_email": {
-        "type": "string",
-        "default": "xxx@regions.com",
-        "description": "The email of the project author."
-    },
-    "requireds_python": {
-        "type": "string",
-        "default": "3.10",
-        "description": "The Python version required to run the project."
-    },
-    "min_python_version": {
-        "type": "string",
-        "default": "3.10",
-        "description": "The Python version required to run the project."
-    },
-    "max_python_version": {
-        "type": "string",
-        "default": "3.12",
-        "description": "The maximum Python version supported by the project."
-    },
-    "testing_framework": {
-        "type": "string",
-        "default": "pytest",
-        "description": "The testing framework to use for the project."
-    },
-    "python_version": {
-        "type": "string",
-        "default": "3.10",
-        "description": "The version of Python to use for the project."
-    },
-    "python_package_name": {
-        "type": "string",
-        "default": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-        "description": "The name of the Python package."
-    }
+    "project_name": "project_name",
+    "author_name": "Your Name",
+    "author_email": "xxx@regions.com",
+    "requireds_python": "3.10",
+    "min_python_version": "3.10",
+    "max_python_version": "3.12",
+    "testing_framework":  "pytest",
+    "python_version": "3.10",
+    "python_package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}"
 }
