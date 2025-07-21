@@ -42,7 +42,7 @@ include = ["{{cookiecutter.package_name}}", "{{cookiecutter.package_name}}.*"]
 exclude = ["tests", "tests.*"]
 
 [tool.setuptools]
-py-modules = ["{{cookiecutter.package_name}"]
+py-modules = ["{{cookiecutter.package_name}}"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
