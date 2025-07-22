@@ -4,14 +4,14 @@ dynamic = ["version"]
 authors = [
     {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
 ]
-readme = "README.md
+readme = "README.md"
 dependencies = [
     "pandas",
     "numpy"
 ]
 
 [project.scripts]
-src = "src.{{cookiecutter.project_name}}.__main__:main"
+src = "{{cookiecutter.project_name}}.__main__:main"
 
 [project.optional-dependencies]
 dev = [
@@ -40,6 +40,9 @@ build-backend = "setuptools.build_meta"
 where = ['src']
 include = ["{{cookiecutter.package_name}}", "{{cookiecutter.package_name}}.*"]
 exclude = ["tests", "tests.*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "{{cookiecutter.package_name}}.__version__"}
 
 [tool.setuptools]
 py-modules = ["{{cookiecutter.package_name}}"]
