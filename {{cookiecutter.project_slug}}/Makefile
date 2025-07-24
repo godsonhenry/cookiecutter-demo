@@ -4,7 +4,7 @@ python_version={{cookiecutter.python_version}}
 requires-python={{cookiecutter.requires_python}}
 
 venv:
-	pip3 install nv
+	pip3 install uv
 	uv venv .${Venv_name} --python $(python_version)
 
 setup:
