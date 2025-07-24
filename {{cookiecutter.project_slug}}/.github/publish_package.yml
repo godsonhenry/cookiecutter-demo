@@ -1,0 +1,46 @@
+name: Create Release & Publish to Artifactory
+
+on:
+  release:
+    types: published
+
+permissiongs:
+  contents: read
+  packages: write
+  id-token: write
+
+env:
+  PYTHONNOUSERSITE: 1 # don't user usersite at all
+
+jobs:
+  package-push-artifactory:
+    name: Deploy python package to Artifactory
+    runs-on: [self-hosted, linux, x64]
+    container:
+      image: {{cookiecutter.unit_tests_container_image}}
+    outputs:
+      version: ${{ steps.set-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set Git Config
+        env:
+          USERNAME: ${{ github.actor }}
+        run: |
+          git config --global --add safe.directory "*"
+          git config --global user.name "${{cookiecutter.author_name}}"
+          git config --global user.email "${{cookiecutter.author_email}}"
+
+      - name: Dependencies
+        run: |
+          python3 -m pip install uv
+          uv sync --extra dev
+
+      - name: Set Version
+        id: set-version
+        run: echo "version=$(python3 setup.py --version)" >> $GITHUB_OUTPUT
+
+      - name: Publish to Artifactory
+        run: |
+          uv run python3 setup.py sdist bdist_wheel
+          uv run twine upload --repository-url {{cookiecutter.uv_publish_url}} dist/*
+

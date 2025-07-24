@@ -6,28 +6,34 @@ authors = [
 ]
 readme = "README.md"
 dependencies = [
+    "snowflake-connector-python",
+    "sagemaker",
+    "uv",
     "pandas",
-    "numpy"
+    "numpy",
+    "scikit-learn",
+    "xgboost",
+    "pyregions_snowflake",
+    "mlflow",
+    "snowflake>=1.5.0",
+    "ipykernel>=6.29.5",
+    "importlib-metadata>=6.5.2",
+    "lightgbm",
 ]
 
 [project.scripts]
-src = "{{cookiecutter.project_name}}.__main__:main"
+{{cookiecutter.package_name}} = "{{cookiecutter.package_name}}.__main__:main"
 
 [project.optional-dependencies]
 dev = [
+    "isort",
+    "ruff",
     "pytest",
-    "black",
-    "flake8",
-    "mypy",
+    "pytest-cov",
+    "coverage",
+    "mote[all,ec2,s3, dynamodb]>=5.1.5"
 ]
 
-[dependency-groups]
-dev = [
-    "pytest",
-    "black",
-    "flake8",
-    "mypy",
-]
 
 [tool.uv]
 no-binary = false
@@ -35,6 +41,14 @@ no-binary = false
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.uv.index]
+name = "{{cookiecutter.uv_index_name}}"
+url = "{{cookiecutter.uv_index_url}}"
+publish = "{{cookiecutter.uv_publish-url}}"
+
+[tool.setuptools.package-data]
+{{cookiecutter.package_name}} = {{cookiecutter.non_package_file_list}}
 
 [tool.setuptools.packages.find]
 where = ['src']

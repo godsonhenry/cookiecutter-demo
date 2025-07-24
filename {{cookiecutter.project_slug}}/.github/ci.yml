@@ -1,0 +1,42 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, ready_for_review, reopened]
+    branches: 
+      - main
+    paths:
+      - 'src/{{cookiecutter.package_name}}/**'
+
+jobs:
+  unit-tests:
+    name: Run Unit Tests
+    runs-on: [self-hosted, linux, x64]
+    container:
+      image: {{cookiecutter.unit_tests_container_image}}
+    permissiongs:
+      contents: read
+      id-token: write
+      packages: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Dependencies
+        run: |
+          python3 -m pip install uv
+          uv sync --extra dev
+
+      - name: Formatting
+        run: |
+          uv run ruff format --check src/{{cookiecutter.package_name}}
+      
+      - name: linting
+        run: |
+          uv run ruff check src/{{cookiecutter.package_name}}
+
+      - name: Unit Tests
+        run: |  
+          uv run pytest  --disable-warnings --ignore=int_tests --junitxml=pytest.xml --cov-report=term-missing --cov=src/{{cookiecutter.package_name}} tests/
+          uv run coverage report --fail-under=90
