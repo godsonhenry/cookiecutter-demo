@@ -58,5 +58,5 @@ jobs:
           uv publish --index internal-proxy
         env:
           UV_PUBLISH_USERNAME: {{cookiecutter.uv_publish_username}}
-          UV_PUBLISH_PASSWORD: {{cookiecutter.uv_publish_password}}
+          UV_PUBLISH_PASSWORD: ${{ steps.vault.outputs.ART_PASSWORD }}
           BUILD_VERSION: ${{ github.event.release.tag_name }}
