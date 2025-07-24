@@ -42,7 +42,7 @@ no-binary = false
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-[tool.uv.index]
+[[tool.uv.index]]
 name = "{{cookiecutter.uv_index_name}}"
 url = "{{cookiecutter.uv_index_url}}"
 publish = "{{cookiecutter.uv_publish_url}}"
