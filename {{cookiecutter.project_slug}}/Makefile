@@ -5,7 +5,7 @@ requires-python={{cookiecutter.requires_python}}
 
 venv:
 	pip3 install nv
-	nv venv .${Venv_name} --python=$(python_version)
+	nv venv .${Venv_name} --python $(python_version)
 
 setup:
 	pip3 install uv
@@ -23,5 +23,5 @@ test:
 	python -m pytest -v --disable-warnings --ignore=init_tests --cov=${PROJECT} tests/
 	python -m coverage report -m --fail-under=90
 
-build
+build:
 	uv build --no-sources
