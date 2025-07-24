@@ -13,12 +13,5 @@
     "uv_index_name": "internal-proxy",
     "uv_index_url": "https://example.com/uv-index",
     "uv_publish_url": "https://example.com/uv-publish",
-    "non_package_file_list": "[ 'data/*', 'config/*.yaml']",
-    "unit_tests_container_image": "ghcr.io/*****/*****:latest",
-    "vault_url": "https://vault.example.com:8888",
-    "vault_role": "xxx-xxx-role",
-    "vault_namespace": "xxxx-xxxx",
-    "vault_secret1": "xxxxxx",
-    "vault_secret2": "xxxxxx",
-    "uv_publish_username": "xxxxxx"
+    "non_package_file_list": "[ 'data/*', 'config/*.yaml']"
 }
