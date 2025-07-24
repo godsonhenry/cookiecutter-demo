@@ -45,7 +45,7 @@ build-backend = "setuptools.build_meta"
 [tool.uv.index]
 name = "{{cookiecutter.uv_index_name}}"
 url = "{{cookiecutter.uv_index_url}}"
-publish = "{{cookiecutter.uv_publish-url}}"
+publish = "{{cookiecutter.uv_publish_url}}"
 
 [tool.setuptools.package-data]
 {{cookiecutter.package_name}} = {{cookiecutter.non_package_file_list}}

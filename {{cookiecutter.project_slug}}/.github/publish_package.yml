@@ -49,8 +49,8 @@ jobs:
           role: {{cookiecutter.vault_role}}
           namespace: {{cookiecutter.vault_namespace}}
           secrets: |  
-            {{cookiecutter.vault_secret1}}
-            {{cookiecutter.vault_secret2}}
+            {{cookiecutter.vault_secret1}} ;
+            {{cookiecutter.vault_secret2}} ;
 
       - name: Build and push package
         run: |
