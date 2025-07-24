@@ -19,7 +19,7 @@ jobs:
     container:
       image: {{cookiecutter.unit_tests_container_image}}
     outputs:
-      version: ${{ steps.set-version.outputs.version }}
+      version: ${{ steps.set-version.outputs.VERSION}}
     steps:
       - uses: actions/checkout@v3
       - name: Set Git Config
@@ -30,17 +30,33 @@ jobs:
           git config --global user.name "${{cookiecutter.author_name}}"
           git config --global user.email "${{cookiecutter.author_email}}"
 
-      - name: Dependencies
+      - name: Setup python
+        uses: actions/setup-python@master
+        with:
+          python-version: {{cookiecutter.python_version}}
+
+      - name: Install Dependencies
         run: |
           python3 -m pip install uv
-          uv sync --extra dev
 
-      - name: Set Version
-        id: set-version
-        run: echo "version=$(python3 setup.py --version)" >> $GITHUB_OUTPUT
+      - name: Pull Secrets From Vault
+        users: hashicorp/vault-action@v2.5.0
+        id: vault
+        with:
+          url: {{cookiecutter.vault_url}}
+          method: jwt
+          path: 'jwt_github'
+          role: {{cookiecutter.vault_role}}
+          namespace: {{cookiecutter.vault_namespace}}
+          secrets: |  
+            {{cookiecutter.vault_secret1}}
+            {{cookiecutter.vault_secret2}}
 
-      - name: Publish to Artifactory
+      - name: Build and push package
         run: |
-          uv run python3 setup.py sdist bdist_wheel
-          uv run twine upload --repository-url {{cookiecutter.uv_publish_url}} dist/*
-
+          uv build --no-sources
+          uv publish --index internal-proxy
+        env:
+          UV_PUBLISH_USERNAME: {{cookiecutter.uv_publish_username}}
+          UV_PUBLISH_PASSWORD: {{cookiecutter.uv_publish_password}}
+          BUILD_VERSION: ${{ github.event.release.tag_name }}

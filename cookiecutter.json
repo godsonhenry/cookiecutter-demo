@@ -7,7 +7,7 @@
     "requires_python": "3.10",
     "min_python_version": "3.10",
     "max_python_version": "3.12",
-    "testing_framework":  "pytest",
+    "testing_framework": "pytest",
     "python_version": "3.10",
     "package_name": "{{cookiecutter.project_name.lower().replace(' ', '_')}}",
     "uv_index_name": "internal-proxy",
@@ -17,5 +17,12 @@
         "data/*",
         "config/*.yaml"
     ],
-    "cookiecutter.unit_test_framework": "ghcr.io/*****/*****:latest",
+    "unit_test_framework": "ghcr.io/*****/*****:latest",
+    "vault_url": "https://vault.example.com:8888",
+    "vault_role": "xxx-xxx-role",
+    "vault_namespace": "xxxx-xxxx",
+    "vault_secret1": "xxxxxx",
+    "vault_secret2": "xxxxxx",
+    "uv_publish_username": "xxxxxx",
+    "uv_publish_password": "xxxxxx"
 }
