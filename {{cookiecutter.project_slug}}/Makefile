@@ -20,7 +20,8 @@ venv:
 	uv venv .${VENV_NAME} --python ${PYTHON_VERSION}
 
 setup: venv
-	${VENV_PATH}/bin/uv pip install -e ".[dev]"
+	${VENV_PATH}/bin/uv pip install -e . --target .${VENV_NAME}/lib/python${PYTHON_VERSION}/site-packages
+	${VENV_PATH}/bin/uv sync --extra dev --active
 
 linting:
 	${VENV_NAME}/bin/python -m ruff format src/${PROJECT}
