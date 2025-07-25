@@ -20,17 +20,14 @@ venv:
 	uv venv .${VENV_NAME} --python ${PYTHON_VERSION}
 
 setup: venv
-	pip3 install uv
 	${VENV_PATH}/bin/uv pip install -e ".[dev]"
 
 linting:
-	pip3 install uv
 	${VENV_NAME}/bin/python -m ruff format src/${PROJECT}
 	${VENV_NAME}/bin/python -m ruff check --fix src/${PROJECT}
 	${VENV_NAME}/bin/python -m ruff format --check src/${PROJECT}
 
 test:
-	pip3 install uv
 	${VENV_NAME}/bin/python -m pytest -v --disable-warnings --ignore=init_tests --cov=src/${PROJECT} tests/
 	${VENV_NAME}/bin/python -m coverage report -m --fail-under=90
 
