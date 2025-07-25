@@ -1,12 +1,15 @@
 [project]
 name="{{cookiecutter.package_name}}"
 dynamic = ["version"]
+description = "{{cookiecutter.project_description}}"
+requires-python = "{{cookiecutter.requires_python}}"
 authors = [
     {name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"},
 ]
 readme = "README.md"
 dependencies = [
     "snowflake-connector-python",
+    "snowflake-ml-python",
     "sagemaker",
     "uv",
     "pandas",
@@ -15,14 +18,13 @@ dependencies = [
     "xgboost",
     "pyregions_snowflake",
     "mlflow",
-    "snowflake>=1.5.0",
-    "ipykernel>=6.29.5",
-    "importlib-metadata>=6.5.2",
+    "ipykernel",
+    "importlib-metadata",
     "lightgbm",
 ]
 
 [project.scripts]
-{{cookiecutter.package_name}} = "{{cookiecutter.package_name}}.__main__:main"
+{{cookiecutter.package_name}} = "{{cookiecutter.package_name}}.main:main"
 
 [project.optional-dependencies]
 dev = [
@@ -31,7 +33,7 @@ dev = [
     "pytest",
     "pytest-cov",
     "coverage",
-    "mote[all,ec2,s3, dynamodb]>=5.1.5"
+    "moto[all,ec2,s3,dynamodb]>=5.1.5"
 ]
 
 
@@ -39,8 +41,11 @@ dev = [
 no-binary = false
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+# This automatically uses git tags for versioning
 
 [[tool.uv.index]]
 name = "{{cookiecutter.uv_index_name}}"
@@ -48,18 +53,12 @@ url = "{{cookiecutter.uv_index_url}}"
 publish = "{{cookiecutter.uv_publish_url}}"
 
 [tool.setuptools.package-data]
-{{cookiecutter.package_name}} = {{cookiecutter.non_package_file_list}}
+"{{cookiecutter.package_name}}" = {{cookiecutter.non_package_file_list}}
 
 [tool.setuptools.packages.find]
-where = ['src']
+where = ["src"]
 include = ["{{cookiecutter.package_name}}", "{{cookiecutter.package_name}}.*"]
 exclude = ["tests", "tests.*"]
-
-[tool.setuptools.dynamic]
-version = {attr = "{{cookiecutter.package_name}}.__version__"}
-
-[tool.setuptools]
-py-modules = ["{{cookiecutter.package_name}}"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

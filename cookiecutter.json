@@ -1,6 +1,7 @@
 {
     "project_slug": "project_folder_name",
     "project_name": "project_name",
+    "project_description": "A brief description of the project",
     "venv_name": "venv",
     "author_name": "Your Name",
     "author_email": "xxx@****.com",
