@@ -19,21 +19,24 @@ venv:
 	pip3 install uv
 	uv venv .${VENV_NAME} --python ${PYTHON_VERSION}
 
-setup: venv
-	${VENV_PATH}/bin/uv pip install -e . --target .${VENV_NAME}/lib/python${PYTHON_VERSION}/site-packages
-	${VENV_PATH}/bin/uv sync --extra dev --active
+setup: 
+	pip3 install uv
+	uv pip install -e . --target .${VENV_NAME}/lib/python${PYTHON_VERSION}/site-packages
+	uv sync --extra dev --active
 
 linting:
-	${VENV_NAME}/bin/python -m ruff format src/${PROJECT}
-	${VENV_NAME}/bin/python -m ruff check --fix src/${PROJECT}
-	${VENV_NAME}/bin/python -m ruff format --check src/${PROJECT}
+	pip3 install uv
+	python -m ruff format src/${PROJECT}
+	python -m ruff check --fix src/${PROJECT}
+	python -m ruff format --check src/${PROJECT}
 
 test:
-	${VENV_NAME}/bin/python -m pytest -v --disable-warnings --ignore=init_tests --cov=src/${PROJECT} tests/
-	${VENV_NAME}/bin/python -m coverage report -m --fail-under=90
+	pip3 install uv
+	python -m pytest -v --disable-warnings --ignore=init_tests --cov=src/${PROJECT} tests/
+	python -m coverage report -m --fail-under=90
 
 build:
-	${VENV_NAME}/bin/uv build --no-sources
+	uv build --no-sources
 
 clean:
 	rm -rf ${VENV_PATH}
