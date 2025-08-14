@@ -8,19 +8,16 @@ authors = [
 ]
 readme = "README.md"
 dependencies = [
-    "snowflake-connector-python",
-    "snowflake-ml-python",
-    "sagemaker",
     "uv",
     "pandas",
     "numpy",
     "scikit-learn",
     "xgboost",
-    "pyregions_snowflake",
-    "mlflow",
-    "ipykernel",
-    "importlib-metadata",
     "lightgbm",
+    "langchain",
+    "langchain-openai", 
+    "langchain-anthropic",
+    "python-dotenv"
 ]
 
 [project.scripts]
@@ -32,8 +29,7 @@ dev = [
     "ruff",
     "pytest",
     "pytest-cov",
-    "coverage",
-    "moto[all,ec2,s3,dynamodb]>=5.1.5"
+    "coverage"
 ]
 
 
@@ -46,11 +42,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 # This automatically uses git tags for versioning
-
-[[tool.uv.index]]
-name = "{{cookiecutter.uv_index_name}}"
-url = "{{cookiecutter.uv_index_url}}"
-publish = "{{cookiecutter.uv_publish_url}}"
 
 [tool.setuptools.package-data]
 "{{cookiecutter.package_name}}" = {{cookiecutter.non_package_file_list}}

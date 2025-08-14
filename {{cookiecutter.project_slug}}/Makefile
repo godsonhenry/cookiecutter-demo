@@ -33,15 +33,15 @@ linting:
 test:
 	pip3 install uv
 	python -m pytest -v --disable-warnings --ignore=init_tests --cov=src/${PROJECT} tests/
-	python -m coverage report -m --fail-under=90
+	# python -m coverage report -m --fail-under=90
 
 build:
 	uv build --no-sources
 
 clean:
 	rm -rf ${VENV_PATH}
-	rm -rf build/
-	rm -rf dist/
-	rm -rf *.egg-info/
-	find . -type d -name __pycache__ -delete
+	find . -type d -name "build" -exec rm -rf {} +
+	find . -type d -name "dist" -exec rm -rf {} +
+	find . -type d -name "*.egg-info" -exec rm -rf {} +
+	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete

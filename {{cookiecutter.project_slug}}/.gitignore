@@ -1,0 +1,5 @@
+__pycache__/
+tests/__pycache__/
+{{cookiecutter.project_slug}}/__pycache__/
+.venv
+*.egg-info/

@@ -11,8 +11,5 @@
     "testing_framework": "pytest",
     "python_version": "3.10",
     "package_name": "{{cookiecutter.project_name.lower().replace(' ', '_')}}",
-    "uv_index_name": "internal-proxy",
-    "uv_index_url": "https://example.com/uv-index",
-    "uv_publish_url": "https://example.com/uv-publish",
     "non_package_file_list": "[ 'data/*', 'config/*.yaml']"
 }
